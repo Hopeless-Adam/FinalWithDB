@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_1"
+        android:enabled="true"
+        android:icon="@color/blue"
+        android:title="Calender"/>
+    <item
+        android:id="@+id/page_2"
+        android:enabled="true"
+        android:icon="@color/black"
+        android:title="ClassList"/>
+</menu>

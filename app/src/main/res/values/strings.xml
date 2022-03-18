@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FinalWithDB</string>
+    <string name="title_activity_splashscreen">splashscreen</string>
+</resources>
