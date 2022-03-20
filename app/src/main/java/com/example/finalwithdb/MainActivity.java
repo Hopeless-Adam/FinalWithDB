@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements CalendarUtils.Cal
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Firebase 123");
+        myRef.setValue("Firebase hello world");
 
 
 
