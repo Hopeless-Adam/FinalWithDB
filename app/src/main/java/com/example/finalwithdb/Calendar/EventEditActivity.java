@@ -54,7 +54,7 @@ public class EventEditActivity extends AppCompatActivity
         String uniqueID = UUID.randomUUID().toString();
 
         //List<String> EventList = new ArrayList<String>();
-        //String EventString = eventName + " " + CalendarUtils.selectedDate.toString() + " " + time.toString();
+        String EventString = eventName + " " + CalendarUtils.selectedDate.toString() + " " + time.toString();
         //EventList.add(EventString);
 
         //System.out.println(" **** " + EventList.size());
@@ -67,7 +67,7 @@ public class EventEditActivity extends AppCompatActivity
 
         //myRef.child(uniqueID).setValue(EventList);
         Map<String,Object> map = new HashMap<>();
-        map.put(uniqueID, eventName);
+        map.put(uniqueID, EventString);
 
         //myRef.setValue(EventList);
         myRef.updateChildren(map);

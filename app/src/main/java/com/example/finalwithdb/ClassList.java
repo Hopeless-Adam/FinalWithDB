@@ -59,12 +59,18 @@ public class ClassList extends AppCompatActivity {
         Class2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("**** " + "hello");
-
-
 
             }
         });
+
+        Button NewClassButton = (Button) findViewById(R.id.button19);
+        NewClassButton.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ClassList.this, PopUpForClasslist.class);
+                startActivity(intent);
+            }
+        }));
 
 
     }

@@ -10,11 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalWithDB">
         <activity
+            android:name=".PopUpForClasslist"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.CustomTheme"
+            />
+        <activity
             android:name=".Calendar.DailyCalendarActivity"
             android:exported="true" />
-        <activity android:name=".Calendar.EventEditActivity"></activity>
+        <activity android:name=".Calendar.EventEditActivity" />
         <activity android:name=".Calendar.WeekViewActivity" />
-        <activity android:name=".Calendar.EventPage"
+        <activity
+            android:name=".Calendar.EventPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IndividualPage"
+        <activity
+            android:name=".IndividualPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +37,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentList"
+        <activity
+            android:name=".StudentList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +46,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClassList"
+        <activity
+            android:name=".ClassList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,8 +57,8 @@
         </activity>
         <activity
             android:name=".Splashscreen"
-            android:label="@string/title_activity_splashscreen"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/title_activity_splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,7 +69,8 @@
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
         -->
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
