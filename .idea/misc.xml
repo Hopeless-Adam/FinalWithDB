@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_class_list.xml" value="0.1" />
         <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_daily_calendar.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_event_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_event_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_individual_page.xml" value="0.1" />
         <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_splashscreen.xml" value="0.1" />
         <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_student_list.xml" value="0.1" />
+        <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/activity_week_view.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/layout/hour_cell.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/starb/AndroidStudioProjects/FinalWithDB/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
       </map>

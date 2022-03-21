@@ -2,10 +2,12 @@ package com.example.finalwithdb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.PostProcessor;
 import android.os.Bundle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -17,22 +19,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalwithdb.Calendar.CalendarUtils;
 import com.example.finalwithdb.Calendar.WeekViewActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static com.example.finalwithdb.Calendar.CalendarUtils.daysInMonthArray;
 import static com.example.finalwithdb.Calendar.CalendarUtils.monthYearFromDate;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Tag;
 
 public class MainActivity extends AppCompatActivity implements CalendarUtils.CalendarAdapter.OnItemListener
 {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("Events");
 
 
 
@@ -44,12 +56,6 @@ public class MainActivity extends AppCompatActivity implements CalendarUtils.Cal
         initWidgets();
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Firebase hello world");
-
 
 
 
@@ -74,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements CalendarUtils.Cal
         });
 
     }
+
 
     private void initWidgets()
     {

@@ -1,5 +1,6 @@
 package com.example.finalwithdb.Calendar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,17 +8,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.finalwithdb.Calendar.CalendarUtils;
-import com.example.finalwithdb.Calendar.DailyCalendarActivity;
-import com.example.finalwithdb.Calendar.Event;
-import com.example.finalwithdb.Calendar.EventEditActivity;
 import com.example.finalwithdb.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import static com.example.finalwithdb.Calendar.CalendarUtils.daysInWeekArray;
 import static com.example.finalwithdb.Calendar.CalendarUtils.monthYearFromDate;
@@ -29,6 +37,14 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarUtils
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("Events");
+
+
+
+    ArrayList<String> EventString =new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,6 +52,34 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarUtils
         setContentView(R.layout.activity_week_view);
         initWidgets();
         setWeekView();
+
+        System.out.println("**" + EventString);
+
+        myRef.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
+                        for (DataSnapshot data : dataSnapshot.getChildren())
+                        {
+
+                            EventString.add((String) data.getValue());
+
+                        }
+                        System.out.println("****" + EventString);
+
+                    }
+
+                    public void onCancelled(DatabaseError databaseError)
+                    {
+                        //handle databaseError
+                    }
+                });
+
+
+        setEventAdapter();
+
+
     }
 
     private void initWidgets()
@@ -54,7 +98,6 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarUtils
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
-        setEventAdpater();
     }
 
 
@@ -81,14 +124,14 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarUtils
     protected void onResume()
     {
         super.onResume();
-        setEventAdpater();
     }
 
-    private void setEventAdpater()
+    private void setEventAdapter()
     {
         ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
-        Event.EventAdapter eventAdapter = new Event.EventAdapter(getApplicationContext(), dailyEvents);
-        eventListView.setAdapter(eventAdapter);
+
+        ArrayAdapter<String> arr = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, EventString);
+        eventListView.setAdapter(arr);
     }
 
     public void newEventAction(View view)
@@ -100,4 +143,5 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarUtils
     {
         startActivity(new Intent(this, DailyCalendarActivity.class));
     }
+
 }
