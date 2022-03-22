@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalWithDB">
         <activity
+            android:name=".PopUpForStudentlist"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.CustomTheme"/>
+        <activity
             android:name=".PopUpForClasslist"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.CustomTheme"
-            />
+            android:theme="@style/Theme.AppCompat.CustomTheme" />
         <activity
             android:name=".Calendar.DailyCalendarActivity"
             android:exported="true" />

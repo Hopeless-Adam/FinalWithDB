@@ -82,7 +82,7 @@ public class ClassList extends AppCompatActivity {
                         for (DataSnapshot data : dataSnapshot.getChildren())
                         {
 
-                            ClassNameArray.add((String) data.getValue());
+                            ClassNameArray.add(data.getKey());
                             ClassKeyArray.add(data.getKey());
 
                         }
