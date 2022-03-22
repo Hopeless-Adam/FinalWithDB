@@ -15,14 +15,17 @@ public class StudentList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
-        ImageButton Individual1Button = (ImageButton) findViewById(R.id.imageButton2);
-        Individual1Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (StudentList.this, IndividualPage.class);
-                startActivity(intent);
-            }
-        });
+
+
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String ClassKey = extras.getString("key");
+            System.out.println(ClassKey);
+            //The key argument here must match that used in the other activity
+        }
+
 
     }
 }
