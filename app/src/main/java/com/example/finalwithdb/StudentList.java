@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,15 +15,22 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentList extends AppCompatActivity {
 
     ArrayList<String> StudNameArray =new ArrayList<>();
 
     ListView StudListView;
+    String ClassKey = new String();
+
 
 
 
@@ -31,7 +39,6 @@ public class StudentList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
-        String ClassKey = new String();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -50,6 +57,21 @@ public class StudentList extends AppCompatActivity {
             }
         });
 
+        Button RemoveClass = findViewById(R.id.button4);
+        RemoveClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Classes/"+ finalClassKey);
+                myRef.removeValue();
+                Intent intent = new Intent(StudentList.this , ClassList.class);
+                startActivity(intent);
+
+
+
+            }
+        });
+
         System.out.println(ClassKey);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -63,7 +85,7 @@ public class StudentList extends AppCompatActivity {
                         for (DataSnapshot data : dataSnapshot.getChildren())
                         {
 
-                            StudNameArray.add((String) data.getValue());
+                            StudNameArray.add(data.getKey());
 
                         }
                         System.out.println("****" + StudNameArray);
@@ -76,6 +98,8 @@ public class StudentList extends AppCompatActivity {
                     }
                 });
 
+
+
         setStudentAdapter();
 
     }
@@ -84,6 +108,17 @@ public class StudentList extends AppCompatActivity {
         StudListView = findViewById(R.id.StudListView);
         ArrayAdapter<String> arr = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, StudNameArray);
         StudListView.setAdapter(arr);
+        StudListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            String StudAtPos = StudNameArray.get((int) l);
+            Intent intent = new Intent(StudentList.this, IndividualPage.class);
+            intent.putExtra("key", StudAtPos);
+            intent.putExtra("key2", ClassKey);
+            startActivity(intent);
+
+            }
+        });
 
     }
 

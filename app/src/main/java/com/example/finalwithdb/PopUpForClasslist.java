@@ -41,7 +41,6 @@ public class PopUpForClasslist extends AppCompatActivity {
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                String uniqueID = UUID.randomUUID().toString();
 
                 String TextEditText = TextEdit.getText().toString();
 
