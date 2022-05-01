@@ -38,10 +38,13 @@ public class ClassList extends AppCompatActivity {
     DatabaseReference myRef = database.getReference("Classes");
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_list);
+
+        System.out.println(myRef);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -86,10 +89,7 @@ public class ClassList extends AppCompatActivity {
                             ClassKeyArray.add(data.getKey());
 
                         }
-                        System.out.println("****" + ClassNameArray);
-
                     }
-
                     public void onCancelled(DatabaseError databaseError)
                     {
                         //handle databaseError

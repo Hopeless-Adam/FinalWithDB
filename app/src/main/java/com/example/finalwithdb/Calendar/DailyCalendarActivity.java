@@ -18,6 +18,13 @@ import java.util.Locale;
 
 import static com.example.finalwithdb.Calendar.CalendarUtils.selectedDate;
 
+/*
+The code for the calendar feature was created by GitHub user "codeWithCal". The link to the git repository is
+https://github.com/codeWithCal/CalendarTutorialAndroidStudio.
+The YouTube tutorial followed is
+https://www.youtube.com/playlist?list=PLnQbggnVfvo2_VKtkYhrbRz25FjQn4ZIi
+ */
+
 public class DailyCalendarActivity extends AppCompatActivity
 {
 
@@ -45,6 +52,7 @@ public class DailyCalendarActivity extends AppCompatActivity
     {
         super.onResume();
         setDayView();
+        setHourAdapter();
     }
 
     private void setDayView()

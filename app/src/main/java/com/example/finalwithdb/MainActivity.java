@@ -31,20 +31,14 @@ import java.util.Map;
 import static com.example.finalwithdb.Calendar.CalendarUtils.daysInMonthArray;
 import static com.example.finalwithdb.Calendar.CalendarUtils.monthYearFromDate;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Tag;
+
 
 public class MainActivity extends AppCompatActivity implements CalendarUtils.CalendarAdapter.OnItemListener
 {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("Events");
+
 
 
 

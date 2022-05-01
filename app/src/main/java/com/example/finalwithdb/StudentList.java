@@ -1,9 +1,11 @@
 package com.example.finalwithdb;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,9 +70,6 @@ public class StudentList extends AppCompatActivity {
                 myRef.removeValue();
                 Intent intent = new Intent(StudentList.this , ClassList.class);
                 startActivity(intent);
-
-
-
             }
         });
 
@@ -88,7 +89,6 @@ public class StudentList extends AppCompatActivity {
                             StudNameArray.add(data.getKey());
 
                         }
-                        System.out.println("****" + StudNameArray);
 
                     }
 
@@ -97,6 +97,19 @@ public class StudentList extends AppCompatActivity {
                         //handle databaseError
                     }
                 });
+
+        /*myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                   // StudNameArray.add(String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });*/
 
 
 

@@ -30,6 +30,13 @@ import java.util.Objects;
 import static com.example.finalwithdb.Calendar.CalendarUtils.daysInWeekArray;
 import static com.example.finalwithdb.Calendar.CalendarUtils.monthYearFromDate;
 
+/*
+The code for the calendar feature was created by GitHub user "codeWithCal". The link to the git repository is
+https://github.com/codeWithCal/CalendarTutorialAndroidStudio.
+The YouTube tutorial followed is
+https://www.youtube.com/playlist?list=PLnQbggnVfvo2_VKtkYhrbRz25FjQn4ZIi
+ */
+
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarUtils.CalendarAdapter.OnItemListener
 {
@@ -124,6 +131,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarUtils
     protected void onResume()
     {
         super.onResume();
+        setEventAdapter();
     }
 
     private void setEventAdapter()

@@ -5,6 +5,13 @@ import com.example.finalwithdb.Calendar.Event;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/*
+The code for the calendar feature was created by GitHub user "codeWithCal". The link to the git repository is
+https://github.com/codeWithCal/CalendarTutorialAndroidStudio.
+The YouTube tutorial followed is
+https://www.youtube.com/playlist?list=PLnQbggnVfvo2_VKtkYhrbRz25FjQn4ZIi
+ */
+
 class HourEvent
 {
     LocalTime time;

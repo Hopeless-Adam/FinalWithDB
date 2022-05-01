@@ -107,7 +107,7 @@ public class IndividualPage extends AppCompatActivity {
         });
 
 
-        DatabaseReference myRefForEditText = database.getReference("Classes/"+ finalClassName +"/" + finalStudentName);
+        DatabaseReference myRefForEditText = database.getReference("Classes/"+ finalClassName +"/" + finalStudentName + "/Description for " + finalStudentName);
         myRefForEditText.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
