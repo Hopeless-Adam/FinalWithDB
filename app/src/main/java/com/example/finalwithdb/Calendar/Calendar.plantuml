@@ -1,0 +1,210 @@
+@startuml
+
+title __CALENDAR's Class Diagram__\n
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.CalendarUtils {
+          {static} + selectedDate : LocalDate
+          {static} + daysInMonthArray()
+          {static} + daysInWeekArray()
+          {static} + formattedDate()
+          {static} + formattedShortTime()
+          {static} + formattedTime()
+          {static} + monthDayFromDate()
+          {static} + monthYearFromDate()
+          {static} - sundayForDate()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter {
+          - days : ArrayList<LocalDate>
+          + CalendarAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      interface com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter.OnItemListener {
+          {abstract} + onItemClick()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.CalendarUtils.CalendarViewHolder {
+          + dayOfMonth : TextView
+          + parentView : View
+          - days : ArrayList<LocalDate>
+          + CalendarViewHolder()
+          + onClick()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.DailyCalendarActivity {
+          - dayOfWeekTV : TextView
+          - hourListView : ListView
+          - monthDayText : TextView
+          + newEventAction()
+          + nextDayAction()
+          + previousDayAction()
+          # onCreate()
+          # onResume()
+          - hourEventList()
+          - initWidgets()
+          - setDayView()
+          - setHourAdapter()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.Event {
+          {static} + eventsList : ArrayList<Event>
+          - date : LocalDate
+          - name : String
+          - time : LocalTime
+          + Event()
+          {static} + eventsForDate()
+          {static} + eventsForDateAndTime()
+          + getDate()
+          + getName()
+          + getTime()
+          + setDate()
+          + setName()
+          + setTime()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.Event.EventAdapter {
+          + EventAdapter()
+          + getView()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.EventEditActivity {
+          - eventDateTV : TextView
+          - eventNameET : EditText
+          - eventTimeTV : TextView
+          - time : LocalTime
+          + saveEventAction()
+          # onCreate()
+          - initWidgets()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.EventPage {
+          # onCreate()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.HourAdapter {
+          + HourAdapter()
+          + getView()
+          - hideEvent()
+          - setEvent()
+          - setEvents()
+          - setHour()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.HourEvent {
+          ~ events : ArrayList<Event>
+          ~ time : LocalTime
+          + HourEvent()
+          + getEvents()
+          + getTime()
+          + setEvents()
+          + setTime()
+      }
+    }
+  }
+  
+
+  namespace com.example.finalwithdb {
+    namespace Calendar {
+      class com.example.finalwithdb.Calendar.WeekViewActivity {
+          ~ EventString : ArrayList<String>
+          ~ database : FirebaseDatabase
+          ~ myRef : DatabaseReference
+          - calendarRecyclerView : RecyclerView
+          - eventListView : ListView
+          - monthYearText : TextView
+          + dailyAction()
+          + newEventAction()
+          + nextWeekAction()
+          + onItemClick()
+          + previousWeekAction()
+          # onCreate()
+          # onResume()
+          - initWidgets()
+          - setEventAdapter()
+          - setWeekView()
+      }
+    }
+  }
+  
+
+  com.example.finalwithdb.Calendar.CalendarUtils +-down- com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter
+  com.example.finalwithdb.Calendar.CalendarUtils +-down- com.example.finalwithdb.Calendar.CalendarUtils.CalendarViewHolder
+  com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter o-- com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter.OnItemListener : onItemListener
+  com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter +-down- com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter.OnItemListener
+  com.example.finalwithdb.Calendar.CalendarUtils.CalendarViewHolder .up.|> android.view.View.OnClickListener
+  com.example.finalwithdb.Calendar.CalendarUtils.CalendarViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.finalwithdb.Calendar.CalendarUtils.CalendarViewHolder o-- com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter.OnItemListener : onItemListener
+  com.example.finalwithdb.Calendar.DailyCalendarActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.finalwithdb.Calendar.Event +-down- com.example.finalwithdb.Calendar.Event.EventAdapter
+  com.example.finalwithdb.Calendar.Event.EventAdapter -up-|> android.widget.ArrayAdapter
+  com.example.finalwithdb.Calendar.EventEditActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.finalwithdb.Calendar.EventPage -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.finalwithdb.Calendar.HourAdapter -up-|> android.widget.ArrayAdapter
+  com.example.finalwithdb.Calendar.WeekViewActivity .up.|> com.example.finalwithdb.Calendar.CalendarUtils.CalendarAdapter.OnItemListener
+  com.example.finalwithdb.Calendar.WeekViewActivity -up-|> androidx.appcompat.app.AppCompatActivity
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
